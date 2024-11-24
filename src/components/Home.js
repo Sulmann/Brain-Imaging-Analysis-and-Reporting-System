@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import exampleMRI from '../brainimage.jpeg'; // Ensure the path is correct
+import './Home.css'; // Import the CSS file for styles
 
 const Home = () => {
   const [file, setFile] = useState(null);
@@ -50,58 +51,44 @@ const Home = () => {
     }
   };
 
-  const handleDownloadReport = async () => {
-    try {
-      const response = await axios.get('http://localhost:5001/download-report', {
-        responseType: 'blob', // Important for handling binary data
-      });
-
-      // Create a link element to trigger the download
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'prediction_report.pdf'); // Specify the file name
-      document.body.appendChild(link);
-      link.click(); // Trigger the download
-      link.remove(); // Clean up
-    } catch (error) {
-      console.error('Error downloading the report:', error);
-      alert('Error downloading the report. Please try again.');
-    }
-  };
-
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-        <div>
-          <div className="upload-box">
-            <p style={{ color: 'white' }}>Upload your MRI Scans Here</p>
-          </div>
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <input
-              type="file"
-              accept="image/*" // Ensure only images are selectable
-              onChange={handleFileChange}
-              style={{ marginBottom: '10px' }}
-            />
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Submitting...' : 'Submit'}
-            </button>
-          </form>
-          {error && (
-            <p style={{ color: 'red', marginTop: '10px' }}>{error}</p> // Show error message if any
-          )}
+    <div className="home-container">
+      {/* Left section: Upload box */}
+      <div className="upload-section">
+        {/* Welcome note section */}
+        <div className="welcome-note">
+          <h2>Welcome to the MRI Checking and Reporting System</h2>
+          <p>Upload your MRI scan to receive instant analysis and reporting.</p>
         </div>
-        <img src={imageURL} alt="Uploaded MRI" style={{ width: '50%' }} /> {/* Display the uploaded image */}
+
+        <div className="upload-box">
+          {/* Removed heading */}
+          <button onClick={() => document.getElementById('file-input').click()}>Select MRI Scans</button>
+          <input
+            id="file-input"
+            type="file"
+            onChange={handleFileChange}
+            accept="image/*"
+            style={{ display: 'none' }} // Hide the file input
+          />
+          <button onClick={handleSubmit} disabled={isSubmitting}>Submit</button>
+          {error && <p className="error">{error}</p>}
+          {prediction && <p className="prediction">Prediction: {prediction}</p>}
+        </div>
       </div>
-      {prediction && (
-        <div style={{ textAlign: 'center', marginTop: '20px', color: 'green' }}>
-          <h3>Prediction: {prediction}</h3>
-          <button onClick={handleDownloadReport} style={{ marginTop: '10px' }}>
-            Download Report
-          </button> {/* Button to download report */}
+
+      {/* Right section: Image and quote */}
+      <div className="right-section">
+        {/* Image container */}
+        <div className="image-container">
+          <img src={imageURL} alt="Uploaded MRI" className="uploaded-image" />
         </div>
-      )}
+
+        {/* Quote section */}
+        <div className="quote">
+          “The brain is a wonderful organ. It starts working the moment you get up in the morning and does not stop until you get into the office.” - Robert Frost
+        </div>
+      </div>
     </div>
   );
 };
