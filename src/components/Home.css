@@ -1,57 +1,96 @@
+/* Home.css */
+
+/* Container for the entire page */
 .home-container {
-  text-align: center;
-  padding: 20px;
+  display: flex; /* Use flexbox to create a side-by-side layout */
+  height: 100vh; /* Make the container take up the full viewport height */
+  background-color: #7d7d7d; /* Mid-gray background for the entire container */
 }
 
-.welcome-section {
-  background-color: #282c34;
-  color: white;
-  padding: 50px 0;
-  margin-bottom: 20px;
-}
-
-.welcome-section h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.welcome-section p {
-  font-size: 18px;
-}
-
+/* Left section: Upload box */
 .upload-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  width: 50%; /* The left section occupies 50% of the screen */
+  background-color: #000; /* Black background for the upload section */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  padding: 20px; /* Padding around the content */
+  height: 100%; /* Full height of the left side */
 }
 
+/* Welcome note section (above the upload section) */
+.welcome-note {
+  width: 100%; /* Set the width of the welcome note to 100% */
+  background-color: #333; /* Dark gray background for the welcome note */
+  color: white;
+  padding: 10px; /* Reduced padding */
+  border-radius: 10px; /* Rounded corners for the welcome note box */
+  text-align: center; /* Center the text */
+  margin-bottom: 1in; /* Add space between welcome note and upload section (1 inch) */
+}
+
+/* Upload box container styles */
 .upload-box {
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  width: 300px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%; /* Set width to 100% */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  padding: 10px; /* Padding around the content */
 }
 
-.upload-box h3 {
-  margin-bottom: 20px;
-}
-
-.upload-box input[type="file"] {
-  margin-bottom: 20px;
-}
-
+/* Button styles */
 .upload-box button {
-  background-color: red;
+  background-color: red; /* Button color */
   color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+  padding: 12px 0; /* Vertical padding for the button */
+  width: 70%; /* Make the button take the full width of the box */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Button font size */
+  margin: 0.8cm 0; /* 8cm space between buttons (4cm above and 4cm below) */
+}
+
+/* Hidden file input (triggered by the Select MRI Scans button) */
+.upload-box input[type="file"] {
+  display: none; /* Hide the file input */
+}
+
+/* Right section styles */
+.right-section {
+  width: 50%; /* Set the width for the right section */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack image and quote vertically */
+  justify-content: flex-start; /* Align to the top */
+  padding: 20px; /* Padding around the right section */
+  background-color: #000; /* Black background for the right section */
+}
+
+/* Image section */
+.image-container {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Quote section */
+.quote {
+  width: 100%;
+  height: 20%;
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+  font-style: italic;
+  color: white; /* Quote color changed to white */
 }
 
